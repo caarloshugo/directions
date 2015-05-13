@@ -2138,6 +2138,8 @@ function translate(text) {
 	var text = text.replace("Turn right", "Gire a la derecha");
 	var text = text.replace("Turn left", "Gire a la izquierda");
 	
+	
+	var text = text.replace("Enter the roundabout", "Entre a la glorieta");
 	var text = text.replace("Enter the roundabout and take the exit onto", "Entre a la glorieta y tomar la salida hacia");
 	
 	var text = text.replace("Continue on", "Continuar en");
