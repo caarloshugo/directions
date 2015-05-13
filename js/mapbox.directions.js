@@ -1753,17 +1753,7 @@ var Layer = L.LayerGroup.extend({
                 'marker-symbol': 'a'
             })
         }).on('drag', this._drag, this);
-		
-		/*set default origin*/
-		this.originMarker.setLatLng(originLatLng);
-        this.addLayer(this.originMarker);
-        this._directions.setOrigin(originLatLng);
-        if (this._directions.queryable()) {
-            this._directions.query();
-        }
-        /*set default origin*/
         
-            
         this.destinationMarker = L.marker([0, 0], {
             draggable: true,
             icon: L.mapbox.marker.icon({
@@ -1772,7 +1762,16 @@ var Layer = L.LayerGroup.extend({
                 'marker-symbol': 'b'
             })
         }).on('drag', this._drag, this);
-
+		
+		/*set default destination*/
+		this.destinationMarker.setLatLng(destinationLatLng);
+        this.addLayer(this.destinationMarker);
+        this._directions.setDestination(destinationLatLng);
+        if (this._directions.queryable()) {
+            this._directions.query();
+        }
+        /*set default destination*/
+        
         this.stepMarker = L.marker([0, 0], {
             icon: L.divIcon({
                 className: 'mapbox-marker-drag-icon mapbox-marker-drag-icon-step',
