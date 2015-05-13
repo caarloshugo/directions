@@ -6,6 +6,12 @@ if(isset($_GET["lat"]) and isset($_GET["lng"])) {
 	$lat = "19.242439612988647";
 	$lng = "-103.7222671508789";
 }
+
+if(isset($_GET["title"]) and $_GET["title"] != "") {
+	$title = $_GET["title"];
+} else {
+	$title = "Colima";
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,6 +24,9 @@ if(isset($_GET["lat"]) and isset($_GET["lng"])) {
 
 <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.css' rel='stylesheet' />
+<script>
+	var originLatLng = new L.LatLng(<?php echo $lat;?>, <?php echo $lng;?>);
+</script>
 <style>
   body { margin:0; padding:0; }
   #map { position:absolute; top:0; bottom:0; width:100%; }
@@ -61,7 +70,7 @@ if(isset($_GET["lat"]) and isset($_GET["lng"])) {
 
 </style>
 
-<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.1.0/mapbox.directions.js'></script>
+<script src='js/mapbox.directions.js'></script>
 <link rel='stylesheet' href='https://api.tiles.mapbox.com/mapbox.js/plugins/mapbox-directions.js/v0.1.0/mapbox.directions.css' type='text/css' />
 
 <div id='map'></div>
@@ -76,14 +85,13 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiY2Fhcmxvc2h1Z28xIiwiYSI6IklmZGNsNmMifQ.JJksWU
 var map = L.mapbox.map('map', 'caarloshugo1.m5nc5eka', {
     zoomControl: false
 }).setView([<?php echo $lat;?>, <?php echo $lng;?>], 11);
-
+ 
 // move the attribution control out of the way
 map.attributionControl.setPosition('bottomleft');
 
 // create the initial directions object, from which the layer
 // and inputs will pull data.
 var directions = L.mapbox.directions();
-
 var directionsLayer = L.mapbox.directions.layer(directions)
     .addTo(map);
 
@@ -100,7 +108,7 @@ var directionsInstructionsControl = L.mapbox.directions.instructionsControl('ins
     .addTo(map);
     
 $(document).ready( function () {
-	$("#mapbox-directions-origin-input").val("<?php echo $lng;?>, <?php echo $lat;?>");
+	$("#mapbox-directions-origin-input").val("<?php echo $title;?>");
 });
 </script>
 </body>
