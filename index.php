@@ -84,7 +84,7 @@ if(isset($_GET["title"]) and $_GET["title"] != "") {
 L.mapbox.accessToken = 'pk.eyJ1IjoiY2Fhcmxvc2h1Z28xIiwiYSI6IklmZGNsNmMifQ.JJksWU3hBP-Vd3S9WtjFsA';
 var map = L.mapbox.map('map', 'caarloshugo1.m5nc5eka', {
     zoomControl: false
-}).setView([<?php echo $lat;?>, <?php echo $lng;?>], 13);
+}).setView([<?php echo $lat;?>, <?php echo $lng;?>], 12);
  
 // move the attribution control out of the way
 map.attributionControl.setPosition('bottomleft');
